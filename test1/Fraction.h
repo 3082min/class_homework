@@ -18,8 +18,6 @@ class Fraction
 		friend std::istream& operator>>(std::istream& is, Fraction &x);
 		friend std::ostream& operator<<(std::ostream& os, const Fraction &x);
 	private:
-		void setNum();
-		void setDen();
 		int num;
 		int den;
 		int gcd;
