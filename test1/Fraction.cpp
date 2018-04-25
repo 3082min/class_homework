@@ -13,8 +13,8 @@ Fraction::Fraction()
 }
 Fraction::Fraction(int a, int b)
 {
-  this->setNum();
-  this->setDen();
+  setNum();
+  setDen();
 }
 
 int Fraction::getNum() const
@@ -35,7 +35,9 @@ void Fraction::setNum()
 void Fraction::setDen()
 {
   if (den == 0)
+  {
     throw invalid_argument("zero denominator");
+  }
   den = den / gcd;
 }
 
