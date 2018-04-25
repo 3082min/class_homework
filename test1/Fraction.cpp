@@ -4,6 +4,10 @@
 #include "Fraction.h"
 #include <iostream>
 
+Fraction::Fraction()
+{
+  num = den = 0;
+}
 Fraction::Fraction(int a, int b)
 {
   this->setNum();

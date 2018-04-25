@@ -8,6 +8,7 @@
 class Fraction
 {
 	public:
+		Fraction();
 		Fraction(int a, int b);
 		int getNum() const;
 		int getDen() const;
