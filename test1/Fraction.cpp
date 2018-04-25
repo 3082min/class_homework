@@ -15,11 +15,6 @@ Fraction::Fraction(int a, int b)
 {
   num = a;
   den = b;
-
-  if (den == 0)
-  {
-    throw std::invalid_argument("zero denominator");
-  }
 }
 
 int Fraction::getNum() const
@@ -32,53 +27,40 @@ int Fraction::getDen() const
   return den;
 }
 
-void Fraction::setNum()
+Fraction& Fraction::operator+(Fraction &f)
 {
-  num = num / gcd;
+  num = num * f.den + f.num * den;
+  den = den * f.den;
 }
 
-void Fraction::setDen()
+Fraction& Fraction::operator-(Fraction &f)
 {
-
-  den = den / gcd;
-}
-
-Fraction& Fraction::operator+(Fraction &y)
-{
-  y.num = num * y.den + y.num * den;
-  y.den = den * y.den;
-  return y;
-}
-
-Fraction& Fraction::operator-(Fraction &y)
-{
-  y.num = num * y.den - y.num * den;
-  y.den = den * y.den;
-  return y;
+  num = num * f.den - f.num * den;
+  den = den * f.den;
 }
 
 Fraction& Fraction::operator=(Fraction &res)
 {
-  c = res.num;
-  d = res.den;
-
-  rem = c % d;
-  while (rem != 0)
+  while (res.num % 2 == 0 && res.den % 2 == 0)
   {
-    c = d;
-    d = rem;
-    rem = c % d;
+    res.num = res.num /2;
+    res.den = res.den / 2;
   }
-  gcd = d;
-
-  res.num = res.num / gcd;
-  res.den = res.den / gcd;
-
+  while (res.num % 3 == 0 && res.den % 3 == 0)
+  {
+    res.num = res.num /3;
+    res.den = res.den /3;
+  }
   if (res.den < 0)
     {
       res.num *= -1;
       res.den *= -1;
     }
+  if (res.den == res.num)
+  {
+    res.num = 1;
+    res.den = 1;
+  }
   return res;
 }
 
@@ -86,6 +68,10 @@ std::istream& operator >> (std::istream& is, Fraction &x)
 {
   char slash;
   is >> x.num >> slash >> x.den;
+  if (x.den == 0)
+  {
+    throw std::invalid_argument("zero denominator");
+  }
   return is;
 }
 

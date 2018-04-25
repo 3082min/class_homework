@@ -12,18 +12,14 @@ class Fraction
 		Fraction(int a, int b);
 		int getNum() const;
 		int getDen() const;
-		Fraction& operator+(Fraction &y);
-		Fraction& operator-(Fraction &y);
-		Fraction& operator=(Fraction &res);
+		Fraction& operator+(Fraction &f);
+		Fraction& operator-(Fraction &f);
+		const Fraction operator=(const Fraction &res);
 		friend std::istream& operator>>(std::istream& is, Fraction &x);
 		friend std::ostream& operator<<(std::ostream& os, const Fraction &x);
 	private:
 		int num;
 		int den;
-		int gcd;
-		int rem;
-		int c;
-		int d;
 };
 
 #endif
