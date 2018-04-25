@@ -3,6 +3,9 @@
 
 #include "Fraction.h"
 #include <iostream>
+#include <stdexcept>
+
+using namespace std;
 
 Fraction::Fraction()
 {
@@ -12,18 +15,6 @@ Fraction::Fraction(int a, int b)
 {
   this->setNum();
   this->setDen();
-
-  c = a;
-  d = b;
-
-  rem = c % d;
-  while (rem != 0)
-  {
-    c = d;
-    d = rem;
-    rem = c % d;
-  }
-  gcd = d;
 }
 
 int Fraction::getNum() const
